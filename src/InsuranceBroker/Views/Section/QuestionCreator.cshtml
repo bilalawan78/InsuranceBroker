@@ -1,0 +1,47 @@
+﻿@using System.Threading.Tasks
+@using Microsoft.AspNet.Mvc.Rendering
+@using InsuranceBroker.Models
+@model InsuranceBroker.Models.Question
+
+<div style="border-bottom-color: black; border-radius: 10px; border-style: dashed; border-width: thick; padding: 5px; width: 300px;">
+    <br/>
+    @using (Html.BeginForm(null, null, FormMethod.Post, null))
+    {
+        @Html.LabelFor(model => model.Text, Model.Text)
+        @Html.HiddenFor(model => model.Text, Model.Text)
+        for (var i = 0; i < Model.AnswerChoice.Count; i++)
+        {
+            @Html.HiddenFor(model => model.AnswerChoice[i], Model.AnswerChoice[i])
+        }
+
+        @Html.HiddenFor(model => model.Id, Model.Id)
+        @Html.HiddenFor(model => model.Type, Model.Type)
+
+        if (Model.Type == Question.QuestionType.SingleChoice)
+        {
+            <div>
+                @Html.DropDownListFor(model => model.AnswerChoice, new SelectList(Model.AnswerChoice), null, new {@class = "form-control"})
+            </div>
+        }
+        else if (Model.Type == Question.QuestionType.YesNo)
+        {
+            <div>
+                <span>Yes</span> @Html.RadioButtonFor(model => model.AnswerChoice, Model.AnswerChoice[0], new {@class = "radio"})</div>
+            <div>
+                <span>No</span> @Html.RadioButtonFor(model => model.AnswerChoice, Model.AnswerChoice[1], new {@class = "radio"})</div>
+        }
+        else if (Model.Type == Question.QuestionType.YesNoWithText)
+        {
+            <div>
+                <span>Yes</span> @Html.RadioButtonFor(model => model.AnswerChoice, Model.AnswerChoice[0], new {@class = "radio"})</div>
+            <div>
+                <span>No</span> @Html.RadioButtonFor(model => model.AnswerChoice, Model.AnswerChoice[1], new {@class = "radio"})</div>
+        }
+        else if (Model.Type == Question.QuestionType.MultipleChoice)
+        {
+            /*Find a smart way to do it knowing that checkbox is binded to a boolean property and we have strings*/
+        }
+        <br/>
+        <input type="submit" value="Submit Q">
+    }
+</div>

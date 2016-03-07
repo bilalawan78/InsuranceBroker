@@ -1,0 +1,27 @@
+﻿@using Microsoft.AspNet.Mvc.Rendering
+@model InsuranceBroker.Models.Section
+
+Success
+<br/>
+Sections: @Model.Title
+
+<br/>
+Is the section used? @Html.DisplayFor(model => model.Used)
+<br/>
+<br/>
+@for (var i = 0; i < Model.QandA.Count; i++)
+{
+    <text>Question Type:</text>
+    @Html.DisplayFor(model => model.QandA[i].Q.Type)
+    <br/>
+    <text>Question Text:</text>
+    @Html.DisplayFor(model => model.QandA[i].Q.Text)
+    <br/>
+    <text>Answer Extra text:</text>
+    @Html.DisplayFor(model => model.QandA[i].A.ExtraText)
+    <br/>
+    <text>First Answer:</text>
+    @Html.DisplayFor(model => model.QandA[i].A.Value[0])
+    <br/>
+    <br/>
+}

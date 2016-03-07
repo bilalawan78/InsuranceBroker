@@ -1,0 +1,59 @@
+.QandA {
+  width: auto;
+  display: inline-block; }
+
+.sectionGroupForm {
+  border-radius: 10px;
+  border-style: ridge;
+  border-width: thick;
+  padding: 5px;
+  display: inline-block; }
+
+.sectionTitle {
+  font-family: Gill Sans, Verdana;
+  font-size: 11px;
+  line-height: 14px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: bold; }
+
+.sectionQuestionText {
+  margin: auto;
+  float: left;
+  height: 34px;
+  max-width: 500px; }
+
+.sectionElement, .sectionQuestionText {
+  vertical-align: middle;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143; }
+
+.sectionQuestionOptions {
+  margin: auto;
+  float: left;
+  margin-left: 20px; }
+
+.sectionRadio {
+  display: inline-flex;
+  margin-left: 10px; }
+
+FIELDSET {
+  margin: 8px;
+  border: 1px solid silver;
+  padding: 8px;
+  border-radius: 4px; }
+
+LEGEND {
+  padding: 2px;
+  width: 150px;
+  border-bottom: none; }
+
+.sectionGroupSubmit {
+  margin: 8px; }
+
+.sectionExtraText {
+  width: 300px;
+  margin-left: 10px;
+  float: right; }
+

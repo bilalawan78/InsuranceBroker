@@ -1,10 +1,11 @@
-﻿/// <binding Clean='clean' />
+﻿/// <binding AfterBuild='sass' Clean='clean' />
 "use strict";
 
 var gulp = require("gulp"),
     rimraf = require("rimraf"),
     concat = require("gulp-concat"),
     cssmin = require("gulp-cssmin"),
+    sass = require("gulp-sass"),
     uglify = require("gulp-uglify");
 
 var paths = {
@@ -27,6 +28,12 @@ gulp.task("clean:css", function (cb) {
 });
 
 gulp.task("clean", ["clean:js", "clean:css"]);
+
+gulp.task("sass", function () {
+        return gulp.src('Styles/main.scss')
+                .pipe(sass())
+                .pipe(gulp.dest(paths.webroot + '/css'));
+});
 
 gulp.task("min:js", function () {
     return gulp.src([paths.js, "!" + paths.minJs], { base: "." })

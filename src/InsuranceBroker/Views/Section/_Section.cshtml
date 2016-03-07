@@ -1,0 +1,79 @@
+﻿@using System.Threading.Tasks
+@model Section
+@{
+    Layout = null;
+}
+<fieldset>
+    @{
+        <legend>@Model.Title</legend>
+        @Html.HiddenFor(model => model.Title, Model.Title)
+        @Html.HiddenFor(model => model.Id, Model.Id)
+        @Html.HiddenFor(model => model.Used, Model.Used)
+        for (var i = 0; i < Model.QandA.Count; i++)
+        {
+            @:<div class="QandA">
+            //Question part of the model
+            @Html.LabelFor(model => model.QandA[i].Q.Text, Model.QandA[i].Q.Text, new { @class = "sectionQuestionText" })
+            @Html.HiddenFor(model => model.QandA[i].Q.Text, Model.QandA[i].Q.Text)
+            for (var j = 0; j < Model.QandA[i].Q.AnswerChoice.Count; j++)
+            {
+                @Html.HiddenFor(model => model.QandA[i].Q.AnswerChoice[j].Text, Model.QandA[i].Q.AnswerChoice[j].Text)
+                @Html.HiddenFor(model => model.QandA[i].Q.AnswerChoice[j].IsSelected, Model.QandA[i].Q.AnswerChoice[j].IsSelected)
+            }
+            @Html.HiddenFor(model => model.QandA[i].Q.Id, Model.QandA[i].Q.Id)
+            @Html.HiddenFor(model => model.QandA[i].Q.Type, Model.QandA[i].Q.Type)
+
+            //Answer part of the model
+            @Html.HiddenFor(model => model.QandA[i].A.QuestionId, Model.QandA[i].Q.Id)
+            if (Model.QandA[i].Q.Type == Question.QuestionType.SingleChoice)
+            {
+                <div class="sectionQuestionOptions">
+                    @Html.DropDownListFor(model => model.QandA[i].A.Value, new SelectList(Model.QandA[i].Q.AnswerChoice),null,
+                   new { @class = "form-control" })
+                </div>
+            }
+            else if (Model.QandA[i].Q.Type == Question.QuestionType.YesNo)
+            {
+                <div class="sectionQuestionOptions sectionElement btn-group sectionRadio" data-toggle="buttons">
+                    <label class="btn btn-primary active">
+                        @Html.RadioButtonFor(model => model.QandA[i].A.Value, Model.QandA[i].Q.AnswerChoice[0].Text, null)<span>Yes</span>
+                    </label>
+                    <label class="btn btn-primary">
+                        @Html.RadioButtonFor(model => model.QandA[i].A.Value, Model.QandA[i].Q.AnswerChoice[1].Text, null)<span>No</span>
+                    </label>
+                </div>
+            }
+            else if (Model.QandA[i].Q.Type == Question.QuestionType.YesNoWithText)
+            {
+                <div class="sectionQuestionOptions sectionElement">
+                    <div class="btn-group" data-toggle="buttons">
+                        <label class="btn btn-primary active">
+                            @Html.RadioButtonFor(model => model.QandA[i].A.Value, Model.QandA[i].Q.AnswerChoice[0].Text, null)<span>Yes</span>
+                        </label>
+                        <label class="btn btn-primary">
+                            @Html.RadioButtonFor(model => model.QandA[i].A.Value, Model.QandA[i].Q.AnswerChoice[1].Text, null)<span>No</span>
+                        </label>
+                    </div>
+                    @Html.TextBoxFor(model => model.QandA[i].A.ExtraText, null, new { @class = "form-control sectionElement sectionExtraText" })
+                </div>
+            }
+            else if (Model.QandA[i].Q.Type == Question.QuestionType.MultipleChoice)
+            {
+                /*TODO Find a smart way to do it knowing that checkbox is binded to a boolean property and we have strings*/
+                <div class="sectionQuestionOptions sectionElement">
+                    <div class="btn-group" data-toggle="buttons">
+                        @for (int j = 0; j < Model.QandA[i].Q.AnswerChoice.Count; j++)
+                        {
+                          <label class="btn btn-primary">
+                              @Html.CheckBoxFor(model => model.QandA[i].A.Value[j].IsSelected, null)<span>@Model.QandA[i].Q.AnswerChoice[j].Text</span>
+                              @Html.HiddenFor(model => model.QandA[i].A.Value[j].Text,Model.QandA[i].Q.AnswerChoice[j].Text)
+  </label>  
+                        }
+                    </div>
+                </div>
+            }
+            @:</div>
+            <br />
+        }
+    }
+</fieldset>

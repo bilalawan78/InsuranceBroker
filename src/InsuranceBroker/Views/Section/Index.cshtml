@@ -1,0 +1,13 @@
+﻿@using System.Threading.Tasks
+@using Microsoft.AspNet.Mvc.Rendering
+@using InsuranceBroker.Models
+@model Section
+
+<div style="border-bottom-color: black; border-radius: 10px; border-style: dashed; border-width: thick; padding: 5px; width: 300px;">
+    <br/>
+    @using (Html.BeginForm(null, null, FormMethod.Post, null))
+    {
+        await Html.RenderPartialAsync("~/views/section/_Section.cshtml", Model);
+        <input type="submit" value="Submit Section">
+    }
+</div>
