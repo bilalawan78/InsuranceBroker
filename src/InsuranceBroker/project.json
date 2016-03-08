@@ -33,7 +33,11 @@
   },
 
   "frameworks": {
-    "dnx451": { },
+    "dnx451": {
+      "dependencies": {
+        "Unity": "4.0.1"
+      }
+    },
     "dnxcore50": { }
   },
 

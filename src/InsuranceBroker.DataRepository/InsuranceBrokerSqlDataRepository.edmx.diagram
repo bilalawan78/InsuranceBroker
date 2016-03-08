@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="e3f091db0f474057bfb4dbf2090dc04a" Name="Diagram1" ZoomLevel="75">
+        <EntityTypeShape EntityType="InsuranceBroker.SqlDataRepository.Model.Analysis" Width="1.5" PointX="3" PointY="39.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="InsuranceBroker.SqlDataRepository.Model.AnalysisDefinition" Width="1.5" PointX="1.5" PointY="24.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="InsuranceBroker.SqlDataRepository.Model.AnalysisState" Width="1.5" PointX="0.75" PointY="37.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="InsuranceBroker.SqlDataRepository.Model.AnalysisType" Width="1.5" PointX="1.5" PointY="29.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="InsuranceBroker.SqlDataRepository.Model.Answer" Width="1.5" PointX="5.25" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="InsuranceBroker.SqlDataRepository.Model.AnswerGroup" Width="1.5" PointX="5.25" PointY="29.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="InsuranceBroker.SqlDataRepository.Model.Comment" Width="1.5" PointX="5.25" PointY="43.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="InsuranceBroker.SqlDataRepository.Model.Customer" Width="1.5" PointX="0.75" PointY="39.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="InsuranceBroker.SqlDataRepository.Model.NextQuestion" Width="1.5" PointX="5.25" PointY="11.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="InsuranceBroker.SqlDataRepository.Model.Option" Width="1.5" PointX="3" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InsuranceBroker.SqlDataRepository.Model.OptionGroup" Width="1.5" PointX="0.75" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="InsuranceBroker.SqlDataRepository.Model.Owner" Width="1.5" PointX="1.5" PointY="32.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InsuranceBroker.SqlDataRepository.Model.Question" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InsuranceBroker.SqlDataRepository.Model.QuestionType" Width="1.5" PointX="0.75" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="InsuranceBroker.SqlDataRepository.Model.Section" Width="1.5" PointX="0.75" PointY="12.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="InsuranceBroker.SqlDataRepository.Model.SectionGroup" Width="1.5" PointX="1.5" PointY="18.25" IsExpanded="true" />
+        <AssociationConnector Association="InsuranceBroker.SqlDataRepository.Model.FK_Analysis_AnalysisDefinition" ManuallyRouted="false" />
+        <AssociationConnector Association="InsuranceBroker.SqlDataRepository.Model.FK_Analysis_AnalysisState" ManuallyRouted="false" />
+        <AssociationConnector Association="InsuranceBroker.SqlDataRepository.Model.FK_Analysis_Customer" ManuallyRouted="false" />
+        <AssociationConnector Association="InsuranceBroker.SqlDataRepository.Model.FK_Answer_Analysis" ManuallyRouted="false" />
+        <AssociationConnector Association="InsuranceBroker.SqlDataRepository.Model.FK_AnswerGroup_Analysis" ManuallyRouted="false" />
+        <AssociationConnector Association="InsuranceBroker.SqlDataRepository.Model.FK_Comment_Analysis" ManuallyRouted="false" />
+        <AssociationConnector Association="InsuranceBroker.SqlDataRepository.Model.FK_AnalysisDefinition_AnalysisType" ManuallyRouted="false" />
+        <AssociationConnector Association="InsuranceBroker.SqlDataRepository.Model.FK_AnalysisDefinition_Owner" ManuallyRouted="false" />
+        <AssociationConnector Association="InsuranceBroker.SqlDataRepository.Model.FK_SectionGroup_AnalysisDefinition" ManuallyRouted="false" />
+        <AssociationConnector Association="InsuranceBroker.SqlDataRepository.Model.FK_Answer_Option" ManuallyRouted="false" />
+        <AssociationConnector Association="InsuranceBroker.SqlDataRepository.Model.FK_Answer_Question" ManuallyRouted="false" />
+        <AssociationConnector Association="InsuranceBroker.SqlDataRepository.Model.FK_AnswerGroup_SectionGroup" ManuallyRouted="false" />
+        <AssociationConnector Association="InsuranceBroker.SqlDataRepository.Model.FK_NextQuestion_Question" ManuallyRouted="false" />
+        <AssociationConnector Association="InsuranceBroker.SqlDataRepository.Model.FK_NextQuestion_Question1" ManuallyRouted="false" />
+        <AssociationConnector Association="InsuranceBroker.SqlDataRepository.Model.FK_Option_OptionGroup" ManuallyRouted="false" />
+        <AssociationConnector Association="InsuranceBroker.SqlDataRepository.Model.FK_Question_OptionGroup" ManuallyRouted="false" />
+        <AssociationConnector Association="InsuranceBroker.SqlDataRepository.Model.FK_Question_QuestionType" ManuallyRouted="false" />
+        <AssociationConnector Association="InsuranceBroker.SqlDataRepository.Model.FK_Question_Section" ManuallyRouted="false" />
+        <AssociationConnector Association="InsuranceBroker.SqlDataRepository.Model.FK_Section_SectionGroup" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,1445 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="InsuranceBroker.SqlDataRepository.Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Analysis">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="AnalysisDefinitionId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CustomerId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="UserId" Type="uniqueidentifier" />
+          <Property Name="AnalysisStateId" Type="int" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="100" />
+          <Property Name="ModifiedOn" Type="datetime" />
+          <Property Name="ModifiedBy" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="AnalysisDefinition">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="OwnerId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="AnalysisTypeId" Type="int" />
+          <Property Name="Title" Type="nvarchar" MaxLength="1024" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="TaskDetails" Type="nvarchar(max)" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="100" />
+          <Property Name="ModifiedOn" Type="datetime" />
+          <Property Name="ModifiedBy" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="AnalysisState">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Description" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="AnalysisType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="1024" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="100" />
+          <Property Name="ModifiedOn" Type="datetime" />
+          <Property Name="ModifiedBy" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Answer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="AnalysisId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="QuestionId" Type="int" Nullable="false" />
+          <Property Name="OptionGroupId" Type="int" />
+          <Property Name="OptionId" Type="int" />
+          <Property Name="AnswerGroupId" Type="uniqueidentifier" />
+          <Property Name="AnswerText" Type="nvarchar(max)" />
+          <Property Name="IsValid" Type="bit" Nullable="false" />
+          <Property Name="IsFinal" Type="bit" />
+          <Property Name="InHighlighted" Type="bit" Nullable="false" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="100" />
+          <Property Name="ModifiedOn" Type="datetime" />
+          <Property Name="ModifiedBy" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="AnswerGroup">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="AnalysisId" Type="uniqueidentifier" />
+          <Property Name="SectionGroupId" Type="uniqueidentifier" />
+          <Property Name="IsUsed" Type="bit" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="100" />
+          <Property Name="ModifiedOn" Type="datetime" />
+          <Property Name="ModifiedBy" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Comment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="AnalysisId" Type="uniqueidentifier" />
+          <Property Name="Comment" Type="nvarchar(max)" />
+          <Property Name="UserId" Type="uniqueidentifier" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="100" />
+          <Property Name="ModifiedOn" Type="datetime" />
+          <Property Name="ModifiedBy" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="1024" Nullable="false" />
+          <Property Name="Address" Type="nvarchar" MaxLength="1024" />
+          <Property Name="Telephone" Type="nchar" MaxLength="10" />
+          <Property Name="HomePage" Type="nvarchar" MaxLength="1024" />
+          <Property Name="Owner" Type="nvarchar" MaxLength="1024" />
+          <Property Name="Subsidiaries" Type="nvarchar" MaxLength="1024" />
+          <Property Name="CVR" Type="nchar" MaxLength="10" />
+          <Property Name="Management" Type="nvarchar" MaxLength="1024" />
+          <Property Name="Responsible" Type="nvarchar" MaxLength="1024" />
+          <Property Name="Board" Type="nvarchar" MaxLength="1024" />
+          <Property Name="IndustrialClassification" Type="nvarchar" MaxLength="1024" />
+          <Property Name="IsPBSPayment" Type="bit" />
+          <Property Name="IndustrialAssociationMembership" Type="nvarchar" MaxLength="1024" />
+          <Property Name="GroupSales" Type="nvarchar" MaxLength="1024" />
+          <Property Name="EmployeeCount" Type="nchar" MaxLength="10" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="100" />
+          <Property Name="ModifiedOn" Type="datetime" />
+          <Property Name="ModifiedBy" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="NextQuestion">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="BaseQuestionId" Type="int" Nullable="false" />
+          <Property Name="OptionGroupId" Type="int" Nullable="false" />
+          <Property Name="OptionId" Type="int" Nullable="false" />
+          <Property Name="NextQuestionId" Type="int" />
+          <Property Name="SortOrder" Type="int" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="100" />
+          <Property Name="ModifiedOn" Type="datetime" />
+          <Property Name="ModifiedBy" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Option">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="OptionGroupId" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="OptionGroupId" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="1024" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="100" />
+          <Property Name="ModifiedOn" Type="datetime" />
+          <Property Name="ModifiedBy" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="OptionGroup">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="1024" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="100" />
+          <Property Name="ModifiedOn" Type="datetime" />
+          <Property Name="ModifiedBy" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Owner">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="1024" />
+          <Property Name="TemplateLimit" Type="int" />
+          <Property Name="AddressLine1" Type="nvarchar" MaxLength="1024" />
+          <Property Name="AddressLine2" Type="nvarchar" MaxLength="1024" />
+          <Property Name="AddressLine3" Type="nvarchar" MaxLength="1024" />
+          <Property Name="City" Type="nvarchar" MaxLength="50" />
+          <Property Name="PostalCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="Country" Type="nvarchar" MaxLength="50" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="100" />
+          <Property Name="ModifiedOn" Type="datetime" />
+          <Property Name="ModifiedBy" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Question">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="SectionId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="QuestionTypeId" Type="int" Nullable="false" />
+          <Property Name="OptionGroupId" Type="int" />
+          <Property Name="QuestionText" Type="nvarchar(max)" />
+          <Property Name="Comments" Type="nvarchar(max)" />
+          <Property Name="HelpText" Type="nvarchar(max)" />
+          <Property Name="AnswerLabel" Type="nvarchar(max)" />
+          <Property Name="AnswerValidationExpression" Type="nvarchar(max)" />
+          <Property Name="IsMandatory" Type="bit" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="100" />
+          <Property Name="ModifiedOn" Type="datetime" />
+          <Property Name="ModifiedBy" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="QuestionType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="100" />
+          <Property Name="ModifiedOn" Type="datetime" />
+          <Property Name="ModifiedBy" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Section">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="SectionGroupId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="1024" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="SortOrder" Type="int" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="100" />
+          <Property Name="ModifiedOn" Type="datetime" />
+          <Property Name="ModifiedBy" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="SectionGroup">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" />
+          <Property Name="IsMandatory" Type="bit" />
+          <Property Name="AnalysisDefinitionId" Type="uniqueidentifier" />
+          <Property Name="SortOrder" Type="int" Nullable="false" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="100" />
+          <Property Name="ModifiedOn" Type="datetime" />
+          <Property Name="ModifiedBy" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <Association Name="FK_Analysis_AnalysisDefinition">
+          <End Role="AnalysisDefinition" Type="Self.AnalysisDefinition" Multiplicity="1" />
+          <End Role="Analysis" Type="Self.Analysis" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AnalysisDefinition">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Analysis">
+              <PropertyRef Name="AnalysisDefinitionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Analysis_AnalysisState">
+          <End Role="AnalysisState" Type="Self.AnalysisState" Multiplicity="0..1" />
+          <End Role="Analysis" Type="Self.Analysis" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AnalysisState">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Analysis">
+              <PropertyRef Name="AnalysisStateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Analysis_Customer">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+          <End Role="Analysis" Type="Self.Analysis" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Analysis">
+              <PropertyRef Name="CustomerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AnalysisDefinition_AnalysisType">
+          <End Role="AnalysisType" Type="Self.AnalysisType" Multiplicity="0..1" />
+          <End Role="AnalysisDefinition" Type="Self.AnalysisDefinition" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AnalysisType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AnalysisDefinition">
+              <PropertyRef Name="AnalysisTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AnalysisDefinition_Owner">
+          <End Role="Owner" Type="Self.Owner" Multiplicity="1" />
+          <End Role="AnalysisDefinition" Type="Self.AnalysisDefinition" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Owner">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AnalysisDefinition">
+              <PropertyRef Name="OwnerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Answer_Analysis">
+          <End Role="Analysis" Type="Self.Analysis" Multiplicity="1" />
+          <End Role="Answer" Type="Self.Answer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Analysis">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Answer">
+              <PropertyRef Name="AnalysisId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Answer_Option">
+          <End Role="Option" Type="Self.Option" Multiplicity="0..1" />
+          <End Role="Answer" Type="Self.Answer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Option">
+              <PropertyRef Name="Id" />
+              <PropertyRef Name="OptionGroupId" />
+            </Principal>
+            <Dependent Role="Answer">
+              <PropertyRef Name="OptionId" />
+              <PropertyRef Name="OptionGroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Answer_Question">
+          <End Role="Question" Type="Self.Question" Multiplicity="1" />
+          <End Role="Answer" Type="Self.Answer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Question">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Answer">
+              <PropertyRef Name="QuestionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AnswerGroup_Analysis">
+          <End Role="Analysis" Type="Self.Analysis" Multiplicity="0..1" />
+          <End Role="AnswerGroup" Type="Self.AnswerGroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Analysis">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AnswerGroup">
+              <PropertyRef Name="AnalysisId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AnswerGroup_SectionGroup">
+          <End Role="SectionGroup" Type="Self.SectionGroup" Multiplicity="0..1" />
+          <End Role="AnswerGroup" Type="Self.AnswerGroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SectionGroup">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AnswerGroup">
+              <PropertyRef Name="SectionGroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Comment_Analysis">
+          <End Role="Analysis" Type="Self.Analysis" Multiplicity="0..1" />
+          <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Analysis">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Comment">
+              <PropertyRef Name="AnalysisId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NextQuestion_Question">
+          <End Role="Question" Type="Self.Question" Multiplicity="1" />
+          <End Role="NextQuestion" Type="Self.NextQuestion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Question">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="NextQuestion">
+              <PropertyRef Name="BaseQuestionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NextQuestion_Question1">
+          <End Role="Question" Type="Self.Question" Multiplicity="0..1" />
+          <End Role="NextQuestion" Type="Self.NextQuestion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Question">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="NextQuestion">
+              <PropertyRef Name="NextQuestionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Option_OptionGroup">
+          <End Role="OptionGroup" Type="Self.OptionGroup" Multiplicity="1" />
+          <End Role="Option" Type="Self.Option" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OptionGroup">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Option">
+              <PropertyRef Name="OptionGroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Question_OptionGroup">
+          <End Role="OptionGroup" Type="Self.OptionGroup" Multiplicity="0..1" />
+          <End Role="Question" Type="Self.Question" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OptionGroup">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Question">
+              <PropertyRef Name="OptionGroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Question_QuestionType">
+          <End Role="QuestionType" Type="Self.QuestionType" Multiplicity="1" />
+          <End Role="Question" Type="Self.Question" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QuestionType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Question">
+              <PropertyRef Name="QuestionTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Question_Section">
+          <End Role="Section" Type="Self.Section" Multiplicity="1" />
+          <End Role="Question" Type="Self.Question" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Section">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Question">
+              <PropertyRef Name="SectionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Section_SectionGroup">
+          <End Role="SectionGroup" Type="Self.SectionGroup" Multiplicity="1" />
+          <End Role="Section" Type="Self.Section" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SectionGroup">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Section">
+              <PropertyRef Name="SectionGroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SectionGroup_AnalysisDefinition">
+          <End Role="AnalysisDefinition" Type="Self.AnalysisDefinition" Multiplicity="0..1" />
+          <End Role="SectionGroup" Type="Self.SectionGroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AnalysisDefinition">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SectionGroup">
+              <PropertyRef Name="AnalysisDefinitionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="InsuranceBrokerSqlDataRepositoryModelStoreContainer">
+          <EntitySet Name="Analysis" EntityType="Self.Analysis" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AnalysisDefinition" EntityType="Self.AnalysisDefinition" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AnalysisState" EntityType="Self.AnalysisState" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AnalysisType" EntityType="Self.AnalysisType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Answer" EntityType="Self.Answer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AnswerGroup" EntityType="Self.AnswerGroup" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Comment" EntityType="Self.Comment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NextQuestion" EntityType="Self.NextQuestion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Option" EntityType="Self.Option" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OptionGroup" EntityType="Self.OptionGroup" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Owner" EntityType="Self.Owner" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Question" EntityType="Self.Question" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="QuestionType" EntityType="Self.QuestionType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Section" EntityType="Self.Section" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SectionGroup" EntityType="Self.SectionGroup" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Analysis_AnalysisDefinition" Association="Self.FK_Analysis_AnalysisDefinition">
+            <End Role="AnalysisDefinition" EntitySet="AnalysisDefinition" />
+            <End Role="Analysis" EntitySet="Analysis" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Analysis_AnalysisState" Association="Self.FK_Analysis_AnalysisState">
+            <End Role="AnalysisState" EntitySet="AnalysisState" />
+            <End Role="Analysis" EntitySet="Analysis" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Analysis_Customer" Association="Self.FK_Analysis_Customer">
+            <End Role="Customer" EntitySet="Customer" />
+            <End Role="Analysis" EntitySet="Analysis" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AnalysisDefinition_AnalysisType" Association="Self.FK_AnalysisDefinition_AnalysisType">
+            <End Role="AnalysisType" EntitySet="AnalysisType" />
+            <End Role="AnalysisDefinition" EntitySet="AnalysisDefinition" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AnalysisDefinition_Owner" Association="Self.FK_AnalysisDefinition_Owner">
+            <End Role="Owner" EntitySet="Owner" />
+            <End Role="AnalysisDefinition" EntitySet="AnalysisDefinition" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Answer_Analysis" Association="Self.FK_Answer_Analysis">
+            <End Role="Analysis" EntitySet="Analysis" />
+            <End Role="Answer" EntitySet="Answer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Answer_Option" Association="Self.FK_Answer_Option">
+            <End Role="Option" EntitySet="Option" />
+            <End Role="Answer" EntitySet="Answer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Answer_Question" Association="Self.FK_Answer_Question">
+            <End Role="Question" EntitySet="Question" />
+            <End Role="Answer" EntitySet="Answer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AnswerGroup_Analysis" Association="Self.FK_AnswerGroup_Analysis">
+            <End Role="Analysis" EntitySet="Analysis" />
+            <End Role="AnswerGroup" EntitySet="AnswerGroup" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AnswerGroup_SectionGroup" Association="Self.FK_AnswerGroup_SectionGroup">
+            <End Role="SectionGroup" EntitySet="SectionGroup" />
+            <End Role="AnswerGroup" EntitySet="AnswerGroup" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Comment_Analysis" Association="Self.FK_Comment_Analysis">
+            <End Role="Analysis" EntitySet="Analysis" />
+            <End Role="Comment" EntitySet="Comment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NextQuestion_Question" Association="Self.FK_NextQuestion_Question">
+            <End Role="Question" EntitySet="Question" />
+            <End Role="NextQuestion" EntitySet="NextQuestion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NextQuestion_Question1" Association="Self.FK_NextQuestion_Question1">
+            <End Role="Question" EntitySet="Question" />
+            <End Role="NextQuestion" EntitySet="NextQuestion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Option_OptionGroup" Association="Self.FK_Option_OptionGroup">
+            <End Role="OptionGroup" EntitySet="OptionGroup" />
+            <End Role="Option" EntitySet="Option" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Question_OptionGroup" Association="Self.FK_Question_OptionGroup">
+            <End Role="OptionGroup" EntitySet="OptionGroup" />
+            <End Role="Question" EntitySet="Question" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Question_QuestionType" Association="Self.FK_Question_QuestionType">
+            <End Role="QuestionType" EntitySet="QuestionType" />
+            <End Role="Question" EntitySet="Question" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Question_Section" Association="Self.FK_Question_Section">
+            <End Role="Section" EntitySet="Section" />
+            <End Role="Question" EntitySet="Question" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Section_SectionGroup" Association="Self.FK_Section_SectionGroup">
+            <End Role="SectionGroup" EntitySet="SectionGroup" />
+            <End Role="Section" EntitySet="Section" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SectionGroup_AnalysisDefinition" Association="Self.FK_SectionGroup_AnalysisDefinition">
+            <End Role="AnalysisDefinition" EntitySet="AnalysisDefinition" />
+            <End Role="SectionGroup" EntitySet="SectionGroup" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="InsuranceBroker.SqlDataRepository.Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Analysis">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="AnalysisDefinitionId" Type="Guid" Nullable="false" />
+          <Property Name="CustomerId" Type="Guid" Nullable="false" />
+          <Property Name="UserId" Type="Guid" />
+          <Property Name="AnalysisStateId" Type="Int32" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AnalysisDefinition" Relationship="Self.FK_Analysis_AnalysisDefinition" FromRole="Analysis" ToRole="AnalysisDefinition" />
+          <NavigationProperty Name="AnalysisState" Relationship="Self.FK_Analysis_AnalysisState" FromRole="Analysis" ToRole="AnalysisState" />
+          <NavigationProperty Name="Customer" Relationship="Self.FK_Analysis_Customer" FromRole="Analysis" ToRole="Customer" />
+          <NavigationProperty Name="Answers" Relationship="Self.FK_Answer_Analysis" FromRole="Analysis" ToRole="Answer" />
+          <NavigationProperty Name="AnswerGroups" Relationship="Self.FK_AnswerGroup_Analysis" FromRole="Analysis" ToRole="AnswerGroup" />
+          <NavigationProperty Name="Comments" Relationship="Self.FK_Comment_Analysis" FromRole="Analysis" ToRole="Comment" />
+        </EntityType>
+        <EntityType Name="AnalysisDefinition">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="OwnerId" Type="Guid" Nullable="false" />
+          <Property Name="AnalysisTypeId" Type="Int32" />
+          <Property Name="Title" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TaskDetails" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Analyses" Relationship="Self.FK_Analysis_AnalysisDefinition" FromRole="AnalysisDefinition" ToRole="Analysis" />
+          <NavigationProperty Name="AnalysisType" Relationship="Self.FK_AnalysisDefinition_AnalysisType" FromRole="AnalysisDefinition" ToRole="AnalysisType" />
+          <NavigationProperty Name="Owner" Relationship="Self.FK_AnalysisDefinition_Owner" FromRole="AnalysisDefinition" ToRole="Owner" />
+          <NavigationProperty Name="SectionGroups" Relationship="Self.FK_SectionGroup_AnalysisDefinition" FromRole="AnalysisDefinition" ToRole="SectionGroup" />
+        </EntityType>
+        <EntityType Name="AnalysisState">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Analyses" Relationship="Self.FK_Analysis_AnalysisState" FromRole="AnalysisState" ToRole="Analysis" />
+        </EntityType>
+        <EntityType Name="AnalysisType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AnalysisDefinitions" Relationship="Self.FK_AnalysisDefinition_AnalysisType" FromRole="AnalysisType" ToRole="AnalysisDefinition" />
+        </EntityType>
+        <EntityType Name="Answer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="AnalysisId" Type="Guid" Nullable="false" />
+          <Property Name="QuestionId" Type="Int32" Nullable="false" />
+          <Property Name="OptionGroupId" Type="Int32" />
+          <Property Name="OptionId" Type="Int32" />
+          <Property Name="AnswerGroupId" Type="Guid" />
+          <Property Name="AnswerText" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsValid" Type="Boolean" Nullable="false" />
+          <Property Name="IsFinal" Type="Boolean" />
+          <Property Name="InHighlighted" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Analysis" Relationship="Self.FK_Answer_Analysis" FromRole="Answer" ToRole="Analysis" />
+          <NavigationProperty Name="Option" Relationship="Self.FK_Answer_Option" FromRole="Answer" ToRole="Option" />
+          <NavigationProperty Name="Question" Relationship="Self.FK_Answer_Question" FromRole="Answer" ToRole="Question" />
+        </EntityType>
+        <EntityType Name="AnswerGroup">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="AnalysisId" Type="Guid" />
+          <Property Name="SectionGroupId" Type="Guid" />
+          <Property Name="IsUsed" Type="Boolean" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Analysis" Relationship="Self.FK_AnswerGroup_Analysis" FromRole="AnswerGroup" ToRole="Analysis" />
+          <NavigationProperty Name="SectionGroup" Relationship="Self.FK_AnswerGroup_SectionGroup" FromRole="AnswerGroup" ToRole="SectionGroup" />
+        </EntityType>
+        <EntityType Name="Comment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="AnalysisId" Type="Guid" />
+          <Property Name="Comment1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UserId" Type="Guid" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Analysis" Relationship="Self.FK_Comment_Analysis" FromRole="Comment" ToRole="Analysis" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Address" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
+          <Property Name="Telephone" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="HomePage" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
+          <Property Name="Owner" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
+          <Property Name="Subsidiaries" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
+          <Property Name="CVR" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Management" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
+          <Property Name="Responsible" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
+          <Property Name="Board" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
+          <Property Name="IndustrialClassification" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
+          <Property Name="IsPBSPayment" Type="Boolean" />
+          <Property Name="IndustrialAssociationMembership" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
+          <Property Name="GroupSales" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
+          <Property Name="EmployeeCount" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Analyses" Relationship="Self.FK_Analysis_Customer" FromRole="Customer" ToRole="Analysis" />
+        </EntityType>
+        <EntityType Name="NextQuestion">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="BaseQuestionId" Type="Int32" Nullable="false" />
+          <Property Name="OptionGroupId" Type="Int32" Nullable="false" />
+          <Property Name="OptionId" Type="Int32" Nullable="false" />
+          <Property Name="NextQuestionId" Type="Int32" />
+          <Property Name="SortOrder" Type="Int32" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Question" Relationship="Self.FK_NextQuestion_Question" FromRole="NextQuestion" ToRole="Question" />
+          <NavigationProperty Name="Question1" Relationship="Self.FK_NextQuestion_Question1" FromRole="NextQuestion" ToRole="Question" />
+        </EntityType>
+        <EntityType Name="Option">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="OptionGroupId" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="OptionGroupId" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Answers" Relationship="Self.FK_Answer_Option" FromRole="Option" ToRole="Answer" />
+          <NavigationProperty Name="OptionGroup" Relationship="Self.FK_Option_OptionGroup" FromRole="Option" ToRole="OptionGroup" />
+        </EntityType>
+        <EntityType Name="OptionGroup">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Options" Relationship="Self.FK_Option_OptionGroup" FromRole="OptionGroup" ToRole="Option" />
+          <NavigationProperty Name="Questions" Relationship="Self.FK_Question_OptionGroup" FromRole="OptionGroup" ToRole="Question" />
+        </EntityType>
+        <EntityType Name="Owner">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
+          <Property Name="TemplateLimit" Type="Int32" />
+          <Property Name="AddressLine1" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
+          <Property Name="AddressLine2" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
+          <Property Name="AddressLine3" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PostalCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AnalysisDefinitions" Relationship="Self.FK_AnalysisDefinition_Owner" FromRole="Owner" ToRole="AnalysisDefinition" />
+        </EntityType>
+        <EntityType Name="Question">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="SectionId" Type="Guid" Nullable="false" />
+          <Property Name="QuestionTypeId" Type="Int32" Nullable="false" />
+          <Property Name="OptionGroupId" Type="Int32" />
+          <Property Name="QuestionText" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Comments" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="HelpText" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AnswerLabel" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AnswerValidationExpression" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsMandatory" Type="Boolean" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Answers" Relationship="Self.FK_Answer_Question" FromRole="Question" ToRole="Answer" />
+          <NavigationProperty Name="NextQuestions" Relationship="Self.FK_NextQuestion_Question" FromRole="Question" ToRole="NextQuestion" />
+          <NavigationProperty Name="NextQuestions1" Relationship="Self.FK_NextQuestion_Question1" FromRole="Question" ToRole="NextQuestion" />
+          <NavigationProperty Name="OptionGroup" Relationship="Self.FK_Question_OptionGroup" FromRole="Question" ToRole="OptionGroup" />
+          <NavigationProperty Name="QuestionType" Relationship="Self.FK_Question_QuestionType" FromRole="Question" ToRole="QuestionType" />
+          <NavigationProperty Name="Section" Relationship="Self.FK_Question_Section" FromRole="Question" ToRole="Section" />
+        </EntityType>
+        <EntityType Name="QuestionType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Questions" Relationship="Self.FK_Question_QuestionType" FromRole="QuestionType" ToRole="Question" />
+        </EntityType>
+        <EntityType Name="Section">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="SectionGroupId" Type="Guid" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SortOrder" Type="Int32" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Questions" Relationship="Self.FK_Question_Section" FromRole="Section" ToRole="Question" />
+          <NavigationProperty Name="SectionGroup" Relationship="Self.FK_Section_SectionGroup" FromRole="Section" ToRole="SectionGroup" />
+        </EntityType>
+        <EntityType Name="SectionGroup">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsMandatory" Type="Boolean" />
+          <Property Name="AnalysisDefinitionId" Type="Guid" />
+          <Property Name="SortOrder" Type="Int32" Nullable="false" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AnalysisDefinition" Relationship="Self.FK_SectionGroup_AnalysisDefinition" FromRole="SectionGroup" ToRole="AnalysisDefinition" />
+          <NavigationProperty Name="AnswerGroups" Relationship="Self.FK_AnswerGroup_SectionGroup" FromRole="SectionGroup" ToRole="AnswerGroup" />
+          <NavigationProperty Name="Sections" Relationship="Self.FK_Section_SectionGroup" FromRole="SectionGroup" ToRole="Section" />
+        </EntityType>
+        <Association Name="FK_Analysis_AnalysisDefinition">
+          <End Role="AnalysisDefinition" Type="Self.AnalysisDefinition" Multiplicity="1" />
+          <End Role="Analysis" Type="Self.Analysis" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AnalysisDefinition">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Analysis">
+              <PropertyRef Name="AnalysisDefinitionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Analysis_AnalysisState">
+          <End Role="AnalysisState" Type="Self.AnalysisState" Multiplicity="0..1" />
+          <End Role="Analysis" Type="Self.Analysis" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AnalysisState">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Analysis">
+              <PropertyRef Name="AnalysisStateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Analysis_Customer">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+          <End Role="Analysis" Type="Self.Analysis" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Analysis">
+              <PropertyRef Name="CustomerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Answer_Analysis">
+          <End Role="Analysis" Type="Self.Analysis" Multiplicity="1" />
+          <End Role="Answer" Type="Self.Answer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Analysis">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Answer">
+              <PropertyRef Name="AnalysisId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AnswerGroup_Analysis">
+          <End Role="Analysis" Type="Self.Analysis" Multiplicity="0..1" />
+          <End Role="AnswerGroup" Type="Self.AnswerGroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Analysis">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AnswerGroup">
+              <PropertyRef Name="AnalysisId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Comment_Analysis">
+          <End Role="Analysis" Type="Self.Analysis" Multiplicity="0..1" />
+          <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Analysis">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Comment">
+              <PropertyRef Name="AnalysisId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AnalysisDefinition_AnalysisType">
+          <End Role="AnalysisType" Type="Self.AnalysisType" Multiplicity="0..1" />
+          <End Role="AnalysisDefinition" Type="Self.AnalysisDefinition" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AnalysisType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AnalysisDefinition">
+              <PropertyRef Name="AnalysisTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AnalysisDefinition_Owner">
+          <End Role="Owner" Type="Self.Owner" Multiplicity="1" />
+          <End Role="AnalysisDefinition" Type="Self.AnalysisDefinition" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Owner">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AnalysisDefinition">
+              <PropertyRef Name="OwnerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SectionGroup_AnalysisDefinition">
+          <End Role="AnalysisDefinition" Type="Self.AnalysisDefinition" Multiplicity="0..1" />
+          <End Role="SectionGroup" Type="Self.SectionGroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AnalysisDefinition">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SectionGroup">
+              <PropertyRef Name="AnalysisDefinitionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Answer_Option">
+          <End Role="Option" Type="Self.Option" Multiplicity="0..1" />
+          <End Role="Answer" Type="Self.Answer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Option">
+              <PropertyRef Name="Id" />
+              <PropertyRef Name="OptionGroupId" />
+            </Principal>
+            <Dependent Role="Answer">
+              <PropertyRef Name="OptionId" />
+              <PropertyRef Name="OptionGroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Answer_Question">
+          <End Role="Question" Type="Self.Question" Multiplicity="1" />
+          <End Role="Answer" Type="Self.Answer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Question">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Answer">
+              <PropertyRef Name="QuestionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AnswerGroup_SectionGroup">
+          <End Role="SectionGroup" Type="Self.SectionGroup" Multiplicity="0..1" />
+          <End Role="AnswerGroup" Type="Self.AnswerGroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SectionGroup">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AnswerGroup">
+              <PropertyRef Name="SectionGroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NextQuestion_Question">
+          <End Role="Question" Type="Self.Question" Multiplicity="1" />
+          <End Role="NextQuestion" Type="Self.NextQuestion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Question">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="NextQuestion">
+              <PropertyRef Name="BaseQuestionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NextQuestion_Question1">
+          <End Role="Question" Type="Self.Question" Multiplicity="0..1" />
+          <End Role="NextQuestion" Type="Self.NextQuestion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Question">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="NextQuestion">
+              <PropertyRef Name="NextQuestionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Option_OptionGroup">
+          <End Role="OptionGroup" Type="Self.OptionGroup" Multiplicity="1" />
+          <End Role="Option" Type="Self.Option" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OptionGroup">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Option">
+              <PropertyRef Name="OptionGroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Question_OptionGroup">
+          <End Role="OptionGroup" Type="Self.OptionGroup" Multiplicity="0..1" />
+          <End Role="Question" Type="Self.Question" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OptionGroup">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Question">
+              <PropertyRef Name="OptionGroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Question_QuestionType">
+          <End Role="QuestionType" Type="Self.QuestionType" Multiplicity="1" />
+          <End Role="Question" Type="Self.Question" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QuestionType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Question">
+              <PropertyRef Name="QuestionTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Question_Section">
+          <End Role="Section" Type="Self.Section" Multiplicity="1" />
+          <End Role="Question" Type="Self.Question" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Section">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Question">
+              <PropertyRef Name="SectionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Section_SectionGroup">
+          <End Role="SectionGroup" Type="Self.SectionGroup" Multiplicity="1" />
+          <End Role="Section" Type="Self.Section" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SectionGroup">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Section">
+              <PropertyRef Name="SectionGroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="InsuranceBrokerSqlDataRepositoryEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Analyses" EntityType="Self.Analysis" />
+          <EntitySet Name="AnalysisDefinitions" EntityType="Self.AnalysisDefinition" />
+          <EntitySet Name="AnalysisStates" EntityType="Self.AnalysisState" />
+          <EntitySet Name="AnalysisTypes" EntityType="Self.AnalysisType" />
+          <EntitySet Name="Answers" EntityType="Self.Answer" />
+          <EntitySet Name="AnswerGroups" EntityType="Self.AnswerGroup" />
+          <EntitySet Name="Comments" EntityType="Self.Comment" />
+          <EntitySet Name="Customers" EntityType="Self.Customer" />
+          <EntitySet Name="NextQuestions" EntityType="Self.NextQuestion" />
+          <EntitySet Name="Options" EntityType="Self.Option" />
+          <EntitySet Name="OptionGroups" EntityType="Self.OptionGroup" />
+          <EntitySet Name="Owners" EntityType="Self.Owner" />
+          <EntitySet Name="Questions" EntityType="Self.Question" />
+          <EntitySet Name="QuestionTypes" EntityType="Self.QuestionType" />
+          <EntitySet Name="Sections" EntityType="Self.Section" />
+          <EntitySet Name="SectionGroups" EntityType="Self.SectionGroup" />
+          <AssociationSet Name="FK_Analysis_AnalysisDefinition" Association="Self.FK_Analysis_AnalysisDefinition">
+            <End Role="AnalysisDefinition" EntitySet="AnalysisDefinitions" />
+            <End Role="Analysis" EntitySet="Analyses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Analysis_AnalysisState" Association="Self.FK_Analysis_AnalysisState">
+            <End Role="AnalysisState" EntitySet="AnalysisStates" />
+            <End Role="Analysis" EntitySet="Analyses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Analysis_Customer" Association="Self.FK_Analysis_Customer">
+            <End Role="Customer" EntitySet="Customers" />
+            <End Role="Analysis" EntitySet="Analyses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Answer_Analysis" Association="Self.FK_Answer_Analysis">
+            <End Role="Analysis" EntitySet="Analyses" />
+            <End Role="Answer" EntitySet="Answers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AnswerGroup_Analysis" Association="Self.FK_AnswerGroup_Analysis">
+            <End Role="Analysis" EntitySet="Analyses" />
+            <End Role="AnswerGroup" EntitySet="AnswerGroups" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Comment_Analysis" Association="Self.FK_Comment_Analysis">
+            <End Role="Analysis" EntitySet="Analyses" />
+            <End Role="Comment" EntitySet="Comments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AnalysisDefinition_AnalysisType" Association="Self.FK_AnalysisDefinition_AnalysisType">
+            <End Role="AnalysisType" EntitySet="AnalysisTypes" />
+            <End Role="AnalysisDefinition" EntitySet="AnalysisDefinitions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AnalysisDefinition_Owner" Association="Self.FK_AnalysisDefinition_Owner">
+            <End Role="Owner" EntitySet="Owners" />
+            <End Role="AnalysisDefinition" EntitySet="AnalysisDefinitions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SectionGroup_AnalysisDefinition" Association="Self.FK_SectionGroup_AnalysisDefinition">
+            <End Role="AnalysisDefinition" EntitySet="AnalysisDefinitions" />
+            <End Role="SectionGroup" EntitySet="SectionGroups" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Answer_Option" Association="Self.FK_Answer_Option">
+            <End Role="Option" EntitySet="Options" />
+            <End Role="Answer" EntitySet="Answers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Answer_Question" Association="Self.FK_Answer_Question">
+            <End Role="Question" EntitySet="Questions" />
+            <End Role="Answer" EntitySet="Answers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AnswerGroup_SectionGroup" Association="Self.FK_AnswerGroup_SectionGroup">
+            <End Role="SectionGroup" EntitySet="SectionGroups" />
+            <End Role="AnswerGroup" EntitySet="AnswerGroups" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NextQuestion_Question" Association="Self.FK_NextQuestion_Question">
+            <End Role="Question" EntitySet="Questions" />
+            <End Role="NextQuestion" EntitySet="NextQuestions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NextQuestion_Question1" Association="Self.FK_NextQuestion_Question1">
+            <End Role="Question" EntitySet="Questions" />
+            <End Role="NextQuestion" EntitySet="NextQuestions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Option_OptionGroup" Association="Self.FK_Option_OptionGroup">
+            <End Role="OptionGroup" EntitySet="OptionGroups" />
+            <End Role="Option" EntitySet="Options" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Question_OptionGroup" Association="Self.FK_Question_OptionGroup">
+            <End Role="OptionGroup" EntitySet="OptionGroups" />
+            <End Role="Question" EntitySet="Questions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Question_QuestionType" Association="Self.FK_Question_QuestionType">
+            <End Role="QuestionType" EntitySet="QuestionTypes" />
+            <End Role="Question" EntitySet="Questions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Question_Section" Association="Self.FK_Question_Section">
+            <End Role="Section" EntitySet="Sections" />
+            <End Role="Question" EntitySet="Questions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Section_SectionGroup" Association="Self.FK_Section_SectionGroup">
+            <End Role="SectionGroup" EntitySet="SectionGroups" />
+            <End Role="Section" EntitySet="Sections" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="InsuranceBrokerSqlDataRepositoryModelStoreContainer" CdmEntityContainer="InsuranceBrokerSqlDataRepositoryEntities">
+          <EntitySetMapping Name="Analyses">
+            <EntityTypeMapping TypeName="InsuranceBroker.SqlDataRepository.Model.Analysis">
+              <MappingFragment StoreEntitySet="Analysis">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="AnalysisDefinitionId" ColumnName="AnalysisDefinitionId" />
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="AnalysisStateId" ColumnName="AnalysisStateId" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AnalysisDefinitions">
+            <EntityTypeMapping TypeName="InsuranceBroker.SqlDataRepository.Model.AnalysisDefinition">
+              <MappingFragment StoreEntitySet="AnalysisDefinition">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="OwnerId" ColumnName="OwnerId" />
+                <ScalarProperty Name="AnalysisTypeId" ColumnName="AnalysisTypeId" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="TaskDetails" ColumnName="TaskDetails" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AnalysisStates">
+            <EntityTypeMapping TypeName="InsuranceBroker.SqlDataRepository.Model.AnalysisState">
+              <MappingFragment StoreEntitySet="AnalysisState">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AnalysisTypes">
+            <EntityTypeMapping TypeName="InsuranceBroker.SqlDataRepository.Model.AnalysisType">
+              <MappingFragment StoreEntitySet="AnalysisType">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Answers">
+            <EntityTypeMapping TypeName="InsuranceBroker.SqlDataRepository.Model.Answer">
+              <MappingFragment StoreEntitySet="Answer">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="AnalysisId" ColumnName="AnalysisId" />
+                <ScalarProperty Name="QuestionId" ColumnName="QuestionId" />
+                <ScalarProperty Name="OptionGroupId" ColumnName="OptionGroupId" />
+                <ScalarProperty Name="OptionId" ColumnName="OptionId" />
+                <ScalarProperty Name="AnswerGroupId" ColumnName="AnswerGroupId" />
+                <ScalarProperty Name="AnswerText" ColumnName="AnswerText" />
+                <ScalarProperty Name="IsValid" ColumnName="IsValid" />
+                <ScalarProperty Name="IsFinal" ColumnName="IsFinal" />
+                <ScalarProperty Name="InHighlighted" ColumnName="InHighlighted" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AnswerGroups">
+            <EntityTypeMapping TypeName="InsuranceBroker.SqlDataRepository.Model.AnswerGroup">
+              <MappingFragment StoreEntitySet="AnswerGroup">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="AnalysisId" ColumnName="AnalysisId" />
+                <ScalarProperty Name="SectionGroupId" ColumnName="SectionGroupId" />
+                <ScalarProperty Name="IsUsed" ColumnName="IsUsed" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Comments">
+            <EntityTypeMapping TypeName="InsuranceBroker.SqlDataRepository.Model.Comment">
+              <MappingFragment StoreEntitySet="Comment">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="AnalysisId" ColumnName="AnalysisId" />
+                <ScalarProperty Name="Comment1" ColumnName="Comment" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Customers">
+            <EntityTypeMapping TypeName="InsuranceBroker.SqlDataRepository.Model.Customer">
+              <MappingFragment StoreEntitySet="Customer">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Telephone" ColumnName="Telephone" />
+                <ScalarProperty Name="HomePage" ColumnName="HomePage" />
+                <ScalarProperty Name="Owner" ColumnName="Owner" />
+                <ScalarProperty Name="Subsidiaries" ColumnName="Subsidiaries" />
+                <ScalarProperty Name="CVR" ColumnName="CVR" />
+                <ScalarProperty Name="Management" ColumnName="Management" />
+                <ScalarProperty Name="Responsible" ColumnName="Responsible" />
+                <ScalarProperty Name="Board" ColumnName="Board" />
+                <ScalarProperty Name="IndustrialClassification" ColumnName="IndustrialClassification" />
+                <ScalarProperty Name="IsPBSPayment" ColumnName="IsPBSPayment" />
+                <ScalarProperty Name="IndustrialAssociationMembership" ColumnName="IndustrialAssociationMembership" />
+                <ScalarProperty Name="GroupSales" ColumnName="GroupSales" />
+                <ScalarProperty Name="EmployeeCount" ColumnName="EmployeeCount" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NextQuestions">
+            <EntityTypeMapping TypeName="InsuranceBroker.SqlDataRepository.Model.NextQuestion">
+              <MappingFragment StoreEntitySet="NextQuestion">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="BaseQuestionId" ColumnName="BaseQuestionId" />
+                <ScalarProperty Name="OptionGroupId" ColumnName="OptionGroupId" />
+                <ScalarProperty Name="OptionId" ColumnName="OptionId" />
+                <ScalarProperty Name="NextQuestionId" ColumnName="NextQuestionId" />
+                <ScalarProperty Name="SortOrder" ColumnName="SortOrder" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Options">
+            <EntityTypeMapping TypeName="InsuranceBroker.SqlDataRepository.Model.Option">
+              <MappingFragment StoreEntitySet="Option">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="OptionGroupId" ColumnName="OptionGroupId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OptionGroups">
+            <EntityTypeMapping TypeName="InsuranceBroker.SqlDataRepository.Model.OptionGroup">
+              <MappingFragment StoreEntitySet="OptionGroup">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Owners">
+            <EntityTypeMapping TypeName="InsuranceBroker.SqlDataRepository.Model.Owner">
+              <MappingFragment StoreEntitySet="Owner">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="TemplateLimit" ColumnName="TemplateLimit" />
+                <ScalarProperty Name="AddressLine1" ColumnName="AddressLine1" />
+                <ScalarProperty Name="AddressLine2" ColumnName="AddressLine2" />
+                <ScalarProperty Name="AddressLine3" ColumnName="AddressLine3" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Questions">
+            <EntityTypeMapping TypeName="InsuranceBroker.SqlDataRepository.Model.Question">
+              <MappingFragment StoreEntitySet="Question">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="SectionId" ColumnName="SectionId" />
+                <ScalarProperty Name="QuestionTypeId" ColumnName="QuestionTypeId" />
+                <ScalarProperty Name="OptionGroupId" ColumnName="OptionGroupId" />
+                <ScalarProperty Name="QuestionText" ColumnName="QuestionText" />
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="HelpText" ColumnName="HelpText" />
+                <ScalarProperty Name="AnswerLabel" ColumnName="AnswerLabel" />
+                <ScalarProperty Name="AnswerValidationExpression" ColumnName="AnswerValidationExpression" />
+                <ScalarProperty Name="IsMandatory" ColumnName="IsMandatory" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QuestionTypes">
+            <EntityTypeMapping TypeName="InsuranceBroker.SqlDataRepository.Model.QuestionType">
+              <MappingFragment StoreEntitySet="QuestionType">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sections">
+            <EntityTypeMapping TypeName="InsuranceBroker.SqlDataRepository.Model.Section">
+              <MappingFragment StoreEntitySet="Section">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="SectionGroupId" ColumnName="SectionGroupId" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="SortOrder" ColumnName="SortOrder" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SectionGroups">
+            <EntityTypeMapping TypeName="InsuranceBroker.SqlDataRepository.Model.SectionGroup">
+              <MappingFragment StoreEntitySet="SectionGroup">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="IsMandatory" ColumnName="IsMandatory" />
+                <ScalarProperty Name="AnalysisDefinitionId" ColumnName="AnalysisDefinitionId" />
+                <ScalarProperty Name="SortOrder" ColumnName="SortOrder" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
