@@ -1,4 +1,4 @@
-﻿{
+{
   "userSecretsId": "aspnet5-InsuranceBroker-cb66baa4-8b76-4ff9-9fea-20262f25a997",
   "version": "1.0.0-*",
   "compilationOptions": {
@@ -24,7 +24,7 @@
     "Microsoft.Extensions.Logging": "1.0.0-rc1-final",
     "Microsoft.Extensions.Logging.Console": "1.0.0-rc1-final",
     "Microsoft.Extensions.Logging.Debug": "1.0.0-rc1-final",
-    "Microsoft.VisualStudio.Web.BrowserLink.Loader": "14.0.0-rc1-final"
+    "Microsoft.VisualStudio.Web.BrowserLink.Loader": "14.0.0-rc1-final"    
   },
 
   "commands": {
@@ -35,10 +35,11 @@
   "frameworks": {
     "dnx451": {
       "dependencies": {
+        "InsuranceBroker.DomainServices": "1.0.0-*",
         "Unity": "4.0.1"
       }
     },
-    "dnxcore50": { }
+    "dnxcore50": {  }
   },
 
   "exclude": [

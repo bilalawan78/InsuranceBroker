@@ -27,6 +27,7 @@
             @Html.HiddenFor(model => model.QandA[i].A.QuestionId, Model.QandA[i].Q.Id)
             if (Model.QandA[i].Q.Type == Question.QuestionType.SingleChoice)
             {
+                //TODO Since the dropdown needs one field for the answerchoice and the multicheckbox would need two, find a way to fix this conflict
                 <div class="sectionQuestionOptions">
                     @Html.DropDownListFor(model => model.QandA[i].A.Value, new SelectList(Model.QandA[i].Q.AnswerChoice),null,
                    new { @class = "form-control" })
