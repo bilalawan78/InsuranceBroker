@@ -1,0 +1,16 @@
+{
+  "version": "1.0.0-*",
+  "frameworks": {
+    "net451": {
+      "wrappedProject": "../../src/InsuranceBroker.Domain/InsuranceBroker.Domain.csproj",
+      "bin": {
+        "assembly": "../../src/InsuranceBroker.Domain/obj/{configuration}/InsuranceBroker.Domain.dll",
+        "pdb": "../../src/InsuranceBroker.Domain/obj/{configuration}/InsuranceBroker.Domain.pdb"
+      },
+      "dependencies": {
+        "CommonServiceLocator": "1.3",
+        "Unity": "4.0.1"
+      }
+    }
+  }
+}
